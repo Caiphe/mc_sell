@@ -1,0 +1,61 @@
+{% extends 'products/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="checkout-form-ontainer create-product-main-form">
+  <div align="center">
+    <h2 class="checkout-title">Checkout Here</h2>
+  </div>
+  <form method="POST">
+    {% csrf_token %}
+
+    <div class="container">
+      <div class="container-row row">
+
+        <div class="col-md-12">
+          <div class="form-group">
+            {{ form.street_address }}
+          </div>
+          <div class="form-group">
+            {{ form.appartment_address }}
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            {{ form.country }}
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            {{ form.zip }}
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="form-group">
+            {{ form.save_info }}
+            <label for="save_info">Save info</label>
+            <br />
+            {{ form.same_billing_address }}
+            <label for="same_billing_address"> Same As Billing address</label>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          {% for value, name in form.fields.payment_option.choices %}
+          <div class="form-group" style="margin-bottom: -2px;">
+            <input type="radio" value="{{ value }}" name="payment_option" id="{{ name }}" />
+            <label form="{{ name }}">{{ name }}</label>
+          </div>
+          {% endfor %}
+          <br>
+          <button class="add_toCart_btn" type="submit">Proceed</button>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock content %}

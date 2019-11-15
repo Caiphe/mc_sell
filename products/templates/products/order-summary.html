@@ -1,0 +1,93 @@
+{% extends 'products/base.html' %}
+{% block content %}
+
+
+<div class="order-summary-container" style="margin-top:40px;">
+  <h1 class="order-summary-title">Order Summary</h1>
+  <table id="customers">
+    <tr>
+      <th>
+        <div align="center">
+          #
+        </div>
+      </th>
+      <th>Product Name</th>
+      <th>Price</th>
+      <th>Quantiy</th>
+      <th>Total Price</th>
+      <th></th>
+
+    </tr>
+    {% for order_item in order.products.all %}
+    <tr>
+      <td>
+        <div align="center">{{ forloop.counter }}</div>
+      </td>
+      <td>{{ order_item.product.product_category }}</td>
+      <td>
+        R {% if order_item.product.discount_price %}
+        {{ order_item.product.discount_price }}
+        {% else %}
+        {{ order_item.product.price }}
+        {% endif %}
+      </td>
+      <td>
+        <a class="remove_add_from_cart" href="{% url 'remove-signle-item-from-cart' order_item.product.slug %}">
+          <i class="icon ion-md-remove"></i>
+        </a> &nbsp;
+        {{ order_item.quantity }}&nbsp;
+        <a class="remove_add_from_cart" href="{% url 'add-to-cart' order_item.product.slug %}">
+          <i class="icon ion-md-add"></i>
+        </a>
+      </td>
+      <td>
+        R {% if order_item.product.discount_price %}
+        {{ order_item.get_discount_price }}
+
+        <span class="saved"> saving R{{ order_item.get_saved }} </span>
+        {% else %}
+        {{ order_item.get_total_price }}
+        {% endif %}
+      </td>
+
+      <td>
+        <div align="center">
+          <a href="{% url 'remove-from-cart' order_item.product.slug  %}">
+            <i class="icon ion-md-trash" style="font-size: 19px;"></i>
+          </a>
+        </div>
+      </td>
+    </tr>
+
+    {% empty %}
+    <tr>
+      <td colspan="6">
+        Your cart is umpty
+        <br>
+        <div class="checkbtnContainer" align="right">
+          <a class="add_toCart_btn add_toCart_btncontinue " href="/">Continue Shopping</a> &nbsp;
+        </div>
+        <br>
+      </td>
+
+    </tr>
+    {% endfor %}
+
+    {% if order.get_total %}
+    <tr>
+      <td colspan="4"> <b>Order Total</b></td>
+      <td><b>R {{ order.get_total }}</b></td>
+    </tr>
+    {% endif %}
+
+  </table>
+
+  {% if order.get_total %}
+  <div class="checkbtnContainer" align="right">
+    <a class="add_toCart_btn add_toCart_btncontinue " href="">Continue Shopping</a> &nbsp;
+    <a class="add_toCart_btn" href="{% url 'chechout' %}">Checkout</a>
+  </div>
+  {%  endif %}
+</div>
+
+{% endblock content %}

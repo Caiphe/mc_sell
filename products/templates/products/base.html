@@ -1,0 +1,193 @@
+{% load custom_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        {% if title %}
+        <title>{{ title }}</title>
+        {% else %}
+        <title>McSell</title>
+        {% endif %}
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="/static/css/custom.css">
+        <link rel="stylesheet" href="/static/css/animate.css">
+        <link rel="stylesheet" href="/static/css/ionicons.css">
+        <script type="text/javascript" src="/static/js/ionicons.js"></script>
+        <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+        <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+
+    </head>
+
+    <body>
+        <!-- Logo COntainer -->
+        <div class="logo-container">
+            <a href="{% url  '/'  }">
+                <img src="/static/img/mcsell_logo.svg">
+            </a>
+        </div>
+        <!-- Logo COntainer End-->
+
+        <!-- Menu Section -->
+        <div class="authenticated-section">
+            {% if request.user.is_authenticated %}
+                <ul class=" authenticated">
+                <!-- <li><a href=" {% url 'log-out' %}">Logout</a></li>
+                <li><a href="{% url 'profile' %}">Profile</a></li> -->
+
+                <li><a href="#">Two</a>
+                    <ul class="dropdown">
+                        <li><a href="{% url 'log-out' %}">Logout</a></li>
+                        <li><a href="{% url 'profile' %}">Profile</a></li>
+                    </ul>
+                </li>
+                </ul>
+                {% else %}
+                <ul>
+                    <li><a href=" {% url 'sign-in' %}">Login</a></li>
+                    <li><a href="{% url 'sign-up' %}">Register</a></li>
+                </ul>
+                {% endif %}
+
+        </div>
+
+        <div class="menu-container">
+            <ul>
+                <li><a href="{% url 'home-welcome' %}">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="our-products">Products</a></li>
+
+                {% if request.user.is_authenticated %}
+                <li><a href="{% url 'new-product' %}">Create Product</a></li>
+                {% endif %}
+
+                <li><a href="{% url 'About-mcsell' %}">About Us</a></li>
+                {% if request.user.is_authenticated %}
+                <li class="add-to-cart-a">
+                    <a class="cart-item-count" href="#"><img src="/static/img/icons/cart-icon.png">
+                        <span class="cart_top_count">{{ request.user|cart_item_count }} </span>
+                    </a>
+                </li>
+                {% endif %}
+
+            </ul>
+        </div>
+        <!-- Menu Endss Here -->
+
+
+        <div class="news-added-pop">
+            <h4>Product Added <br> To Your Cart</h4>
+        </div>
+
+        <!-- Order Right Panel -->
+        <div class="order-panel animated " id="cart-panet">
+            <!-- <div class="top-bar"></div> -->
+
+            <div class="loader-container animated "><img src="static/loader/spinner.gif"></div>
+
+            <div class="close-panel">X </div>
+            <!-- Cart Total Price -->
+            <div class="cart-total-price">
+                <h2>Total : R 20000</h2>
+            </div>
+            <div class="bottom-bar"></div>
+        </div>
+        <!-- Order Panel Ends -->
+
+        <!-- Home Images  -->
+        {% if request.path == "/" %}
+        <div class="header-image-container" style="background-image:url('/static/img/header-image.jpg')">
+            <div class="red_circle" style="background-image:url('/static/img/icons/red_ellipse.svg')"></div>
+            <div class="red_circle_2" style="background-image:url('/static/img/icons/red_ellipse.svg')"></div>
+            <div class="red_circle_3" style="background-image:url('/static/img/icons/gray_ellipse.svg')"></div>
+
+            <div class="menu_bottom_line"></div>
+
+            <!-- Social Media Container -->
+            <div class="social_media_container">
+                <div align="center">
+                    <div class="top-line"></div>
+                </div>
+                <div class="social_media_list">
+                    <ul>
+                        <li><a><img src="/static/img/icons/social/facebook.svg"></a></li>
+                        <li><a><img src="/static/img/icons/social/twitter.svg"></a></li>
+                        <li><a><img src="/static/img/icons/social/instagram.svg"></a></li>
+                        <li><a><img src="/static/img/icons/social/email.svg"></a></li>
+                    </ul>
+                </div>
+                <div align="center">
+                    <div class="top-line"></div>
+                </div>
+            </div>
+            <!-- Social Media container Ends -->
+
+            <!-- Search Section Container -->
+            <div class="home-search-container">
+                <div class="search-form-container">
+                    <form class="search-form">
+                        <div class="inner-form">
+                            <div class="form-field">
+                                <div class="borderedClass">{{ form.product_category}}</div>
+                            </div>
+                            <div class="form-field">
+                                {{ form.key_word }}
+                                <img src="">
+                            </div>
+                            <div class="form-button">
+                                <button>Search</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- Search Container Ends -->
+
+        </div>
+        {% else %}
+        <div class="header-image-container-internal" style="background-image:url('/static/img/header-image.jpg')"></div>
+        {% endif %}
+
+        <!-- Message  -->
+        {% if messages %}
+        {% for message in messages %}
+        <div class="my_custom_alert custom-alert-{{ message.tags }} animated slideInLeft" id="my_custom_alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        <!-- Messages Ends -->
+
+        {% block content %}
+        {% endblock content %}
+
+        <div class="footer-container">
+            <div class="bottom-footer">
+                <div align="center"> www.mcsell.com | All Right Reserved </div>
+            </div>
+        </div>
+
+        {% block footer-js %}
+        {% endblock footer-js %}
+        <!-- Messages ends  -->
+    </body>
+
+</html>
+<script type="text/javascript" src="/static/js/jquery.js"></script>
+<script type="text/javascript" src="/static/js/aos.js"></script>
+<script type="text/javascript" src="/static/js/slick.min.js"></script>
+<script type="text/javascript" src="/static/js/custom.js"></script>
+<script>
+    $(document).ready(function () {
+        setTimeout(function () {
+            $('#my_custom_alert').removeClass('slideInLeft')
+            $('#my_custom_alert').addClass('slideOutLeft')
+        }, 4000);
+    })
+</script>

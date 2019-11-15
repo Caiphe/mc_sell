@@ -1,0 +1,22 @@
+{% extends 'products/base.html'  %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<div class="form-container" id="profile_update">
+
+    <h2 class="form-heading">Update </h2>
+    <form class="sign-up-form" id="profile_update" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="each-field">
+            {{ u_form|crispy }}
+            {{ p_form|crispy }}
+        </div>
+
+        <div class="btn-container">
+            <button type="submit" class="sbmt-btn">UPdate</button>
+        </div>
+    </form>
+</div>
+
+{% endblock%}

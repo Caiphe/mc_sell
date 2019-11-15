@@ -1,0 +1,156 @@
+{% extends 'products/base.html' %}
+
+{% block content %}
+
+<div class="product-section">
+
+    <div align="center">
+        <h1>Our Products</h1>
+    </div>
+
+    {% for product in products %}
+    <div class="each-product">
+
+        <div class="top-container">
+            <div class="img-container"><img src="{{ product.product_image.url }}"></div>
+            {% if product.discount_price %}
+            <div class="on_sale">Sale</div>
+            {% endif %}
+
+            <h5 class="product_name">
+                {{ product.product_category }}
+                {% if product.year %}
+                {{ product.year }}
+                {% endif %}
+                {% if product.inch %}
+                {{ product.inch }} inch
+                {% endif %}
+            </h5>
+        </div>
+
+        <div class="details-container">
+            <h2 class="product_price">
+                {% if product.discount_price %}
+                R {{ product.discount_price }}
+                {% else %}
+                R {{ product.price }}
+                <span style="font-size:10px;color:transparent">no</span>
+                {% endif %}
+            </h2>
+
+            <p class="price_details">{{ product.product_category }}</p>
+            <p class="price_details " id="price_details2">
+                {% if product.year %}
+                {{ product.year }}
+                {% endif %}
+                {% if product.inch %}
+                {{ product.inch }} inch
+                {% endif %}
+            </p>
+
+            <div class="button-container" style="margin-top: 14px !important;">
+                <br>
+                <a class="add-to-cart" href="{{ product.add_to_cart_url }}">Add to Cart</a>&nbsp;&nbsp;
+                <a class="read-more" href="{{ product.get_absolute_url }}">Read More</a>
+            </div>
+            <br>
+        </div>
+
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Testimonials Section  -->
+<div class="testtimonials-section-container">
+    <div align="center">
+        <h2 class="custom-heading">Testimonials</h2>
+        <h5 class="sub-custom-heading">What they say about us!</h5>
+
+        <div class="testimonials-slider">
+            {% for test in testimonials %}
+
+            <div class="each-testimonials">
+                <div class="test-img" style="background-image:url('/static/img/icons/testimonial_im.svg')"></div>
+                <p class="textimonials_body">{{ test.testimonial }}</p>
+
+                <div class="testimonial-profile">
+                    <img src="{{ test.user_image.url }}">
+                </div>
+
+                <p class="test_name">{{ test.fullName }}</p>
+                <div align="center">
+                    <div class="bottom_bar"></div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="button-container">
+            <a href="">View More</a>
+        </div>
+        <br>
+    </div>
+</div>
+<!-- Testimonials Ends -->
+
+
+<div class="we_are_apple" style="background-image:url('/static/img/based-img.jpg')">
+    <div align="center">
+        <h2>We are Apple Based Online Shopping</h2>
+        <div class="bottom-bar"> </div>
+    </div>
+</div>
+
+<div class="bottom-full-section">
+    <div class="half-section left-section">
+        <div class="section-container">
+            <h2>Why McSell</h2>
+            <div class="why_bar"></div>
+            <p>
+                As a manager at Infinite Property Management I can honestly say that Wesley's plumbing is one of most
+                reliable plumbers around. Very imprest and will continue to use their services
+                As a manager at Infinite Property Management I can honestly say that Wesley's plumbing is one of most
+                reliable plumbers around. Very imprest and will continue to use their services
+            </p>
+        </div>
+    </div>
+    <div class="half-section right-section">
+        <div class="why_us_img" style="background-image:url('/static/img/why1.jpg')"></div>
+    </div>
+</div>
+
+<!-- Bottom Contact Block -->
+<div class="contact_section">
+    <div class="block-container">
+        <div class="each-block">
+            <div align="center">
+                <img src="/static/img/icons/social/phone.svg" />
+                <h3 class="each-title">Contact Number</h3>
+                <div class="red_bar"></div>
+                <p class="contact-details">+27 74 902 6530</p>
+            </div>
+
+        </div>
+        <div class="each-block">
+            <div align="center">
+                <img src="/static/img/icons/social/envelope.svg" />
+                <h3 class="each-title">Email Address</h3>
+                <div class="red_bar"></div>
+                <p class="contact-details">info@mcsell.com</p>
+            </div>
+        </div>
+        <div class="each-block">
+            <div align="center">
+                <img src="/static/img/icons/social/location.svg" />
+                <h3 class="each-title">Physical Address</h3>
+                <div class="red_bar"></div>
+                <p class="contact-details">
+                    37 Grundel Road <br>
+                    Durban</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Bottom Contact Block -->
+
+
+{% endblock content %}

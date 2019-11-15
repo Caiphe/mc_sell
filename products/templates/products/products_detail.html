@@ -1,0 +1,71 @@
+{% extends 'products/base.html' %}
+
+{% block content %}
+<div class="more-details-container">
+    <h2 class="mode_details_category">
+        {{ object.year }} {{ object.product_category|safe|capfirst }}
+    </h2>
+    <hr>
+
+    <div class="main-details">
+        <!-- Image Container -->
+        <div class="each-block image-block">
+            <div class="imag-container" align="center;">
+                <img src="{{ object.product_image.url}} ">
+            </div>
+        </div>
+
+
+        <!-- Details Block -->
+        <div class="each-block">
+            {{ object.product_category }}
+        </div>
+
+        <!-- Add to cart block -->
+        <div class="each-block add_cart_block">
+
+            {% if object.discount_price %}
+            <h5 class="price_with_line">R{{ object.price }}</h5>
+            <h3 class="product_price">R
+                {{ object.discount_price }}
+            </h3>
+            {% else %}
+            <h3 class="product_price">R
+                {{ object.price }}
+            </h3>
+            {% endif %}
+
+            <div><a class="add_toCart_btn" href="{{ object.add_to_cart_url }}">Add To Cart</a></div>
+            <br>
+            <a class="nocredit_acceptable" href="{{ object.get_removed_from_cart }}">Remove From Cart</a>
+        </div>
+    </div>
+
+    <div class="bottom_description_container">
+
+    </div>
+
+    <div class="mor_imaged">
+        <div class="each_image">
+            <div class="imag_dv">
+                <img src="{{ object.product_image.url}} ">
+            </div>
+        </div>
+        <div class="each_image">
+            <div class="imag_dv">
+                <img src="{{ object.product_image.url}} ">
+            </div>
+        </div>
+        <div class="each_image">
+            <div class="imag_dv">
+                <img src="{{ object.product_image.url}} ">
+            </div>
+        </div>
+        <div class="each_image">
+            <div class="imag_dv">
+                <img src="{{ object.product_image.url}} ">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

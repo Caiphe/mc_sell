@@ -1,0 +1,11 @@
+{% extends 'products/base.html'  %}
+{% block content %}
+<div class="form-container" data-aos="fade-up" data-aos-duration="800">
+
+    <h2 class="form-heading">You have logged out</h2>
+    <div align="center" class="login_again_container">
+        <a class="login_again" href="{% url 'sign-in' %}">Login Again </a>
+    </div>
+</div>
+
+{% endblock%}
