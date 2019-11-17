@@ -41,10 +41,12 @@ class ProductCreateForm(forms.ModelForm):
             # self.fields["year"].label = ''
 
 
+# Main Seach Form
 class SearchProductForm(forms.Form):
     product_category = forms.ChoiceField(widget=forms.Select(
         attrs={
             'class': 'select-field custom-select ',
+            'placeholder': "Category"
         }),
         choices=last_ch, required=True)
 
@@ -54,23 +56,24 @@ class SearchProductForm(forms.Form):
             'class': 'form-fiel search-Keyword',
             "name": "search_input"
         }
-    ))
+    ), required=True)
 
 
-PAYMENT_CHOICE =(
+PAYMENT_CHOICE = (
     ('C', "Card"),
     ('S', "Stripe")
 )
 
+
 class CheckoutForm(forms.Form):
-    street_address  =  forms.CharField(widget=forms.TextInput(
+    street_address = forms.CharField(widget=forms.TextInput(
         attrs={
             "Placeholder": "Street address",
             "class": "input-field form-control"
         }
     ), label="")
 
-    appartment_address  =  forms.CharField(required=False, widget=forms.TextInput(
+    appartment_address = forms.CharField(required=False, widget=forms.TextInput(
         attrs={
             "Placeholder": "Appartment address (Optional)",
             "class": "input-field form-control"
@@ -84,12 +87,14 @@ class CheckoutForm(forms.Form):
     )
     zip = forms.CharField(label="", widget=forms.TextInput(
         attrs={
-            "placeholder":"Zip *",
-            "class" : "zipInput form-control input-field"
+            "placeholder": "Zip *",
+            "class": "zipInput form-control input-field"
         }
     ))
 
-    same_billing_address = forms.BooleanField(widget=forms.CheckboxInput, required=False, label="Same As Billing address")
-    save_info = forms.BooleanField(widget=forms.CheckboxInput, label="Save Info", required=False,)
-    payment_option = forms.ChoiceField(widget=forms.RadioSelect(), choices=PAYMENT_CHOICE )
-
+    same_billing_address = forms.BooleanField(
+        widget=forms.CheckboxInput, required=False, label="Same As Billing address")
+    save_info = forms.BooleanField(
+        widget=forms.CheckboxInput, label="Save Info", required=False,)
+    payment_option = forms.ChoiceField(
+        widget=forms.RadioSelect(), choices=PAYMENT_CHOICE)

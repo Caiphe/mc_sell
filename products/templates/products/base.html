@@ -37,15 +37,8 @@
         <div class="authenticated-section">
             {% if request.user.is_authenticated %}
                 <ul class=" authenticated">
-                <!-- <li><a href=" {% url 'log-out' %}">Logout</a></li>
-                <li><a href="{% url 'profile' %}">Profile</a></li> -->
-
-                <li><a href="#">Two</a>
-                    <ul class="dropdown">
-                        <li><a href="{% url 'log-out' %}">Logout</a></li>
-                        <li><a href="{% url 'profile' %}">Profile</a></li>
-                    </ul>
-                </li>
+                <li><a href=" {% url 'log-out' %}">Logout</a></li>
+                <li><a href="{% url 'profile' %}">Profile</a></li>
                 </ul>
                 {% else %}
                 <ul>
@@ -134,11 +127,15 @@
                     <form class="search-form">
                         <div class="inner-form">
                             <div class="form-field">
-                                <div class="borderedClass">{{ form.product_category}}</div>
+                                <div class="borderedClass">
+                                    {{ form.product_category}}
+                                </div>
                             </div>
                             <div class="form-field">
                                 {{ form.key_word }}
-                                <img src="">
+                                <label>
+                                    <img src="/static/img/icons/search.svg">
+                                </label>
                             </div>
                             <div class="form-button">
                                 <button>Search</button>
