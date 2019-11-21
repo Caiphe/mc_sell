@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from django_countries.fields import CountryField
 from django_countries.widgets import CountrySelectWidget
+from django.template.defaultfilters import slugify
 
 from PIL import Image
 
@@ -75,8 +76,13 @@ class Products(models.Model):
         max_length=50000000, default="Say Something here")
     featured = models.BooleanField(default=False)
     sale = models.BooleanField(default=False)
-    slug = models.SlugField()
+    slug = models.SlugField(max_length=500, unique=True, blank=True)
     display = models.BooleanField(default=False)
+
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.product_category + "-"+ self.year + "-" + self.product_state)
+        super(Products, self).save(*args, **kwargs) 
 
     def __str__(self):
         return self.product_category

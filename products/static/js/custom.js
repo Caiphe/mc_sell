@@ -15,7 +15,7 @@ $(document).ready(function () {
 
 // Loader hide
 var loader = document.querySelector('.loader-container');
-var addToCartbtn = document.querySelector('.cart-item-count');
+// var addToCartbtn = document.querySelector('.cart-item-count');
 
 addToCartbtn.addEventListener(click, function () {
     loader.classList.remove('.slideOutRight')
@@ -25,11 +25,21 @@ setTimeout(function () {
     loader.classList.add("slideOutRight")
 }, 5000);
 
-// $(document).ready(function () {
-//     loader.classList.remove('.slideOutRight')
-// })
 
 setTimeout(function () {
     $('#my_custom_alert').removeClass('slideInLeft')
     $('#my_custom_alert').addClass('slideOutLeft')
 }, 4000);
+
+// $('.each-testimonials').slick({
+//     arrows: true,
+//     slidesToShow: 3,
+//     pauseOnHover: true,
+//     scroll: true,
+//     speed: 900,
+//     autoplay: true,
+//     draggable: true,
+//     dots: false,
+// });
+
+console.log('Hello Marcus')

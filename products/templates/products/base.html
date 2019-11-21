@@ -22,6 +22,11 @@
         <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
         <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
 
+        <script type="text/javascript" src="/static/js/jquery.js"></script>
+        <script type="text/javascript" src="/static/js/aos.js"></script>
+        <script type="text/javascript" src="/static/js/slick.min.js"></script>
+        <script type="text/javascript" src="/static/js/custom.js"></script>
+
     </head>
 
     <body>
@@ -37,8 +42,17 @@
         <div class="authenticated-section">
             {% if request.user.is_authenticated %}
                 <ul class=" authenticated">
-                <li><a href=" {% url 'log-out' %}">Logout</a></li>
-                <li><a href="{% url 'profile' %}">Profile</a></li>
+                <!-- <li><a href=" {% url 'log-out' %}">Logout</a></li>
+                <li><a href="{% url 'profile' %}">Profile</a></li> -->
+
+                <div class="dropdown">
+                    <button class="dropbtn"> <img src="/static/img/icons/userIcon.svg"> Hi {{ user.username }}</button>
+                    <div class="dropdown-content">
+                        <a href=" {% url 'log-out' %}">Logout</a>
+                        <a href="{% url 'profile' %}">Profile</a>
+                    </div>
+                </div>
+
                 </ul>
                 {% else %}
                 <ul>
@@ -176,10 +190,7 @@
     </body>
 
 </html>
-<script type="text/javascript" src="/static/js/jquery.js"></script>
-<script type="text/javascript" src="/static/js/aos.js"></script>
-<script type="text/javascript" src="/static/js/slick.min.js"></script>
-<script type="text/javascript" src="/static/js/custom.js"></script>
+
 <script>
     $(document).ready(function () {
         setTimeout(function () {

@@ -154,8 +154,9 @@ def add_to_cart(request, slug):
         order = order_qs[0]
         if order.products.filter(product__slug=product.slug).exists():
             orderproduct.quantity += 1
+            item = orderproduct.product.product_category
             orderproduct.save()
-            messages.info(request, "This item quantity was updated")
+            messages.info(request, f"{item} quantity was updated")
             return redirect('/order-summary/')
         else:
             messages.info(request, "Added to cart")

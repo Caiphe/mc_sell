@@ -14,7 +14,7 @@ body {
   position: absolute;
   top: 80px;
   right: 100px;
-  z-index: 2;
+  z-index: 1;
 }
 .menu-container ul {
   margin: 0;
@@ -173,7 +173,7 @@ body {
   height: 45px;
   border-radius: 0px;
   border: none;
-  color: #cdcdcd;
+  color: #000;
   font-size: 20px;
   box-sizing: border-box;
   padding-left: 15px;
@@ -265,6 +265,58 @@ body {
 }
 .authenticated-section ul li:nth-child(2):hover {
   display: block;
+}
+.authenticated-section .authenticated .dropbtn {
+  background-color: transparent;
+  color: #000;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  padding-bottom: 10px;
+}
+.authenticated-section .authenticated .dropdown {
+  position: absolute;
+  top: -1px;
+  right: 1px;
+  display: inline-block;
+  min-width: 179px;
+  z-index: 9999;
+}
+.authenticated-section .authenticated .dropdown img {
+  width: 33px;
+}
+.authenticated-section .authenticated .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+.authenticated-section .authenticated .dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+}
+.authenticated-section .authenticated .dropdown-content a:hover {
+  background-color: #A52754;
+  color: #fff;
+}
+.authenticated-section .authenticated .dropdown:hover .dropdown-content {
+  display: block;
+}
+.authenticated-section .authenticated .dropdown:hover .dropbtn {
+  background-color: transparent;
 }
 .form-container {
   position: relative;
@@ -742,6 +794,7 @@ body {
   background: #f2f2f2;
   margin-top: 40px;
   box-sizing: border-box;
+  padding: 10px 20px;
 }
 .more-details-container .mor_imaged {
   width: 100%;

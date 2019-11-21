@@ -14,7 +14,7 @@ class UserRegistrationForm(UserCreationForm):
     ''' Here I'm just customising some placeholder and setting the labels to empty '''
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs) 
+        super().__init__(*args, **kwargs)
         self.fields["username"].label = ''
         self.fields["username"].widget.attrs["placeholder"] = "Username"
         self.fields["email"].label = ''
@@ -27,7 +27,12 @@ class UserRegistrationForm(UserCreationForm):
 
 #  Updated
 class UserUpdateForm(forms.ModelForm):
-    email = forms.EmailField()
+    email = forms.EmailField(widget=forms.TextInput(
+        attrs={
+            "Placeholder": "Address Email",
+            'type' : 'email'
+        }
+    ))
 
     class Meta:
         model = User
@@ -39,7 +44,9 @@ class UserUpdateForm(forms.ModelForm):
         self.fields["username"].label = ''
         self.fields["email"].label = ''
 
-#  This is the profile update class 
+#  This is the profile update class
+
+
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
