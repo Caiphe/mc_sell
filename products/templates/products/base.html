@@ -74,7 +74,7 @@
                 <li><a href="#">Services</a></li>
                 <li><a href="{% url 'our-products' %}">Products</a></li>
 
-                {% if request.user.is_authenticated and user.username == "marcus" %}
+                {% if request.user.is_authenticated and user.username == "Vicky" %}
                 <li><a href="{% url 'new-product' %}">Create Product</a></li>
                 {% endif %}
 

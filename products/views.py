@@ -40,9 +40,9 @@ class ProductsListView(ListView):
     ordering = ['-date_added']
     paginate_by = 8
 
+
 def ProductsView(request):
     products = Products.objects.all()[:8]
-
     context = {
         "products": products
     }

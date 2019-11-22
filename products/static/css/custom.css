@@ -591,6 +591,22 @@ body {
   -o-box-shadow: 0px 10px 40px rgba(254, 160, 160, 0.25);
   -webkit-box-shadow: 0px 10px 40px rgba(254, 160, 160, 0.25);
   padding-top: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+}
+.contact_section .block-container .each-block:hover {
+  margin-top: -20px;
+  transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  box-shadow: 0px 20px 60px rgba(254, 160, 160, 0.25);
+  -moz-box-shadow: 0px 20px 60px rgba(254, 160, 160, 0.25);
+  -o-box-shadow: 0px 20px 60px rgba(254, 160, 160, 0.25);
+  -webkit-box-shadow: 0px 20px 60px rgba(254, 160, 160, 0.25);
 }
 .contact_section .block-container .each-block:nth-child(1) {
   margin-left: 0px;
@@ -759,6 +775,7 @@ body {
   height: 250px;
   position: relative;
   margin-right: 10px;
+  cursor: pointer;
 }
 .more-details-container .main-details .each-block:nth-child(3) {
   margin-right: 0px;
