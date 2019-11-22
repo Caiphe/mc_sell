@@ -14,12 +14,12 @@ $(document).ready(function () {
 })
 
 // Loader hide
-var loader = document.querySelector('.loader-container');
+// var loader = document.querySelector('.loader-container');
 // var addToCartbtn = document.querySelector('.cart-item-count');
 
-addToCartbtn.addEventListener(click, function () {
-    loader.classList.remove('.slideOutRight')
-})
+// addToCartbtn.addEventListener(click, function () {
+//     loader.classList.remove('.slideOutRight')
+// })
 
 setTimeout(function () {
     loader.classList.add("slideOutRight")

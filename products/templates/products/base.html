@@ -25,52 +25,56 @@
         <script type="text/javascript" src="/static/js/jquery.js"></script>
         <script type="text/javascript" src="/static/js/aos.js"></script>
         <script type="text/javascript" src="/static/js/slick.min.js"></script>
-        <script type="text/javascript" src="/static/js/custom.js"></script>
+
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
 
     </head>
 
     <body>
         <!-- Logo COntainer -->
         <div class="logo-container">
-            <a href="{% url  '/'  }">
-                <img src="/static/img/mcsell_logo.svg">
+            <a href="/">
+                <img src="/static/img/mcsell_logo.svg" class="animated3 slideInDown">
             </a>
         </div>
         <!-- Logo COntainer End-->
 
         <!-- Menu Section -->
-        <div class="authenticated-section">
+        <div class="authenticated-section animated slideInDown">
             {% if request.user.is_authenticated %}
-                <ul class=" authenticated">
+            <ul class=" authenticated ">
                 <!-- <li><a href=" {% url 'log-out' %}">Logout</a></li>
                 <li><a href="{% url 'profile' %}">Profile</a></li> -->
 
                 <div class="dropdown">
-                    <button class="dropbtn"> <img src="/static/img/icons/userIcon.svg"> Hi {{ user.username }}</button>
+                    <button class="dropbtn"> <img src="/static/img/icons/userIcon.svg">
+                        &nbsp; Hi {{ user.username|title }}
+                    </button>
                     <div class="dropdown-content">
-                        <a href=" {% url 'log-out' %}">Logout</a>
                         <a href="{% url 'profile' %}">Profile</a>
+                        <a href=" {% url 'log-out' %}">Logout</a>
                     </div>
                 </div>
 
-                </ul>
-                {% else %}
-                <ul>
-                    <li><a href=" {% url 'sign-in' %}">Login</a></li>
-                    <li><a href="{% url 'sign-up' %}">Register</a></li>
-                </ul>
-                {% endif %}
+            </ul>
+            {% else %}
+            <ul>
+                <li><a href=" {% url 'sign-in' %}">Login</a></li>
+                <li><a href="{% url 'sign-up' %}">Register</a></li>
+            </ul>
+            {% endif %}
 
         </div>
 
         <div class="menu-container">
             <ul>
                 <li><a href="{% url 'home-welcome' %}">Home</a></li>
-                <li><a href="#">About</a></li>
+                <!-- <li><a href="#">About</a></li> -->
                 <li><a href="#">Services</a></li>
-                <li><a href="our-products">Products</a></li>
+                <li><a href="{% url 'our-products' %}">Products</a></li>
 
-                {% if request.user.is_authenticated %}
+                {% if request.user.is_authenticated and user.username == "marcus" %}
                 <li><a href="{% url 'new-product' %}">Create Product</a></li>
                 {% endif %}
 
@@ -110,27 +114,33 @@
         <!-- Home Images  -->
         {% if request.path == "/" %}
         <div class="header-image-container" style="background-image:url('/static/img/header-image.jpg')">
-            <div class="red_circle" style="background-image:url('/static/img/icons/red_ellipse.svg')"></div>
-            <div class="red_circle_2" style="background-image:url('/static/img/icons/red_ellipse.svg')"></div>
-            <div class="red_circle_3" style="background-image:url('/static/img/icons/gray_ellipse.svg')"></div>
+            <div class="red_circle animated3 slideInUp"
+                style="background-image:url('/static/img/icons/red_ellipse.svg')">
+            </div>
+            <div class="red_circle_2 animated3 slideInRight"
+                style="background-image:url('/static/img/icons/red_ellipse.svg')">
+            </div>
+            <div class="red_circle_3 animated slideInUp"
+                style="background-image:url('/static/img/icons/gray_ellipse.svg')">
+            </div>
 
             <div class="menu_bottom_line"></div>
 
             <!-- Social Media Container -->
             <div class="social_media_container">
                 <div align="center">
-                    <div class="top-line"></div>
+                    <div class="top-line animated slideInDown"></div>
                 </div>
-                <div class="social_media_list">
+                <div class="social_media_list animated2 slideInLeft ">
                     <ul>
-                        <li><a><img src="/static/img/icons/social/facebook.svg"></a></li>
-                        <li><a><img src="/static/img/icons/social/twitter.svg"></a></li>
-                        <li><a><img src="/static/img/icons/social/instagram.svg"></a></li>
-                        <li><a><img src="/static/img/icons/social/email.svg"></a></li>
+                        <li><a href="#void"><img src="/static/img/icons/social/facebook.svg"></a></li>
+                        <li><a href="#void"><img src="/static/img/icons/social/twitter.svg"></a></li>
+                        <li><a href="#void"><img src="/static/img/icons/social/instagram.svg"></a></li>
+                        <li><a href="#void"><img src="/static/img/icons/social/email.svg"></a></li>
                     </ul>
                 </div>
                 <div align="center">
-                    <div class="top-line"></div>
+                    <div class="top-line animated slideInUp "></div>
                 </div>
             </div>
             <!-- Social Media container Ends -->
@@ -141,9 +151,7 @@
                     <form class="search-form">
                         <div class="inner-form">
                             <div class="form-field">
-                                <div class="borderedClass">
-                                    {{ form.product_category}}
-                                </div>
+                                {{ form.product_category}}
                             </div>
                             <div class="form-field">
                                 {{ form.key_word }}
@@ -185,6 +193,9 @@
         </div>
 
         {% block footer-js %}
+        <script type="text/javascript" src="/static/js/custom.js"></script>
+        <script type="text/javascript" src="/static/js/main.js"></script>
+
         {% endblock footer-js %}
         <!-- Messages ends  -->
     </body>

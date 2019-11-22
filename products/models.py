@@ -79,10 +79,10 @@ class Products(models.Model):
     slug = models.SlugField(max_length=500, unique=True, blank=True)
     display = models.BooleanField(default=False)
 
-
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.product_category + "-"+ self.year + "-" + self.product_state)
-        super(Products, self).save(*args, **kwargs) 
+        self.slug = slugify(self.product_category + "-" +
+                            self.year + "-" + self.product_state)
+        super(Products, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.product_category
@@ -99,10 +99,10 @@ class Products(models.Model):
 
     def get_saved(self, *args, **kwargs):
         return self.price - self.discount_price
-    
+
     def get_removed_from_cart(self, *args, **kwargs):
         return reverse('remove-from-cart', kwargs={
-            "slug":self.slug
+            "slug": self.slug
         })
 
 
@@ -126,9 +126,11 @@ class OrderProduct(models.Model):
 
     def final_price(self):
         if self.product.discount_price:
+            print()
             return self.get_discount_price()
         else:
             return self.get_total_price
+        print(final_p)
 
 
 class Order(models.Model):
@@ -139,12 +141,13 @@ class Order(models.Model):
     ordered_date = models.DateField()
     refund_requested = models.BooleanField(default=False)
     refund_granted = models.BooleanField(default=False)
-    billing_address = models.ForeignKey('BilllingAddress', on_delete=models.SET_NULL, blank=True, null=True)
+    billing_address = models.ForeignKey(
+        'BilllingAddress', on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
         return self.user.username
 
-    # To be Updated 
+    # To be Updated
     def get_total(self):
         total = 0
         for order_product in self.products.all():
@@ -152,10 +155,11 @@ class Order(models.Model):
         return total
 
 
-PAYMENT_CHOICE =(
+PAYMENT_CHOICE = (
     ('C', "Card"),
     ('S', "Stripe")
 )
+
 
 class BilllingAddress(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -165,7 +169,8 @@ class BilllingAddress(models.Model):
     zip = models.CharField(max_length=200)
     same_billing_address = models.BooleanField(default=True)
     save_info = models.BooleanField(default=False)
-    payment_option = models.CharField(max_length=2,  default=False ,choices=PAYMENT_CHOICE )
+    payment_option = models.CharField(
+        max_length=2,  default=False, choices=PAYMENT_CHOICE)
 
     def __str__(self):
         return self.user.username
@@ -178,6 +183,7 @@ USER_TYPE_CHOICES = [
     ('Employee', "Employee"),
     ('Developer', "Developer"),
 ]
+
 
 class Testimonials(models.Model):
     fullName = models.CharField(max_length=100)

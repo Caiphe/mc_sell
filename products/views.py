@@ -15,6 +15,7 @@ from django.utils import timezone
 import datetime
 from .forms import CheckoutForm
 import random
+from django.core.paginator import Paginator
 
 
 def home_views(request):
@@ -35,6 +36,9 @@ def home_views(request):
 class ProductsListView(ListView):
     model = Products
     template_name = "products/productsList.html"
+    context_object_name = "products"
+    ordering = ['-date_added']
+    paginate_by = 8
 
 def ProductsView(request):
     products = Products.objects.all()[:8]
@@ -225,12 +229,13 @@ def remove_single_item_from_cart(request, slug):
             if order_product.quantity > 1:
                 order_product.quantity -= 1
                 order_product.save()
+                messages.info(request, "This item quantity was updated")
+
             else:
                 order.products.remove(order_product)
-
+                messages.success(request, "Item Revodeved from Cart")
             order_product.save()
             # order.products.remove(order_product)
-            messages.info(request, "This item quantity was updated")
             return redirect("/order-summary")
 
         else:

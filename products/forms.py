@@ -45,7 +45,7 @@ class ProductCreateForm(forms.ModelForm):
 class SearchProductForm(forms.Form):
     product_category = forms.ChoiceField(widget=forms.Select(
         attrs={
-            'class': 'select-field custom-select ',
+            'class': 'select-field custom-select js-example-basic-single',
             'placeholder': "Category"
         }),
         choices=last_ch, required=True)

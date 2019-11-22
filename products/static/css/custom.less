@@ -1,7 +1,7 @@
-// @import url('https://fonts.googleapis.com/css?family=Montserrat|Roboto&display=swap');
-// @import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
-// @import url('https://fonts.googleapis.com/css?family=Paprika&display=swap');
-// @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Paprika&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
 @PrimaryColor  :#A52754;
 @SecondaryColor: #1E2057;
@@ -244,7 +244,7 @@ body {
                         border-radius: 0px;
                         border       : none;
                         color        : #000;
-                        font-size    : 20px;
+                        font-size    : 17px;
                         box-sizing   : border-box;
                         padding-left : 15px;
                         font-weight  : lighter;
@@ -1475,6 +1475,7 @@ a {
     width        : 960px;
     margin       : 20px auto;
     margin-bottom: 50px;
+    min-height   : 600px;
 }
 
 #customers {
@@ -1619,5 +1620,69 @@ a {
         border-radius: 0px;
         border       : solid 1px #cdcdcd;
         height       : 40px;
+    }
+}
+
+.form-field {
+    .select2-container .select2-selection--single .select2-selection__rendered {
+        display      : block;
+        padding-left : 11px;
+        padding-right: 20px;
+        overflow     : hidden;
+        text-overflow: ellipsis;
+        white-space  : nowrap;
+        padding-top  : 8px;
+    }
+
+    .select2-container--default .select2-selection--single .select2-selection__arrow {
+        height  : 26px;
+        position: absolute;
+        top     : -1px;
+        right   : 16px;
+        width   : 20px;
+    }
+
+    .select2-container--default .select2-selection--single {
+        border       : 0px;
+        height       : 44px;
+        border-radius: 0px;
+    }
+
+    .select2-container--default .select2-selection--single .select2-selection__arrow b {
+        border           : solid #949494;
+        left             : 50%;
+        margin-left      : -4px;
+        margin-top       : -2px;
+        position         : absolute;
+        border-width     : 0 2px 2px 0;
+        top              : 14px;
+        right            : 23px;
+        width            : 14px;
+        height           : 14px;
+        transform        : rotate(45deg);
+        -moz-transform   : rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        -o-transform     : rotate(45deg);
+        .transition(all .3s ease-in-out);
+
+    }
+
+    .select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b {
+        border           : solid #949494;
+        left             : 50%;
+        margin-left      : -4px;
+        margin-top       : -2px;
+        position         : absolute;
+        border-width     : 0 2px 2px 0;
+        top              : 20px;
+        right            : 23px;
+        width            : 14px;
+        height           : 14px;
+        transform        : rotate(226deg);
+        -moz-transform   : rotate(226deg);
+        -webkit-transform: rotate(226deg);
+        -o-transform     : rotate(226deg);
+        .transition(all .3s ease-in-out);
+
     }
 }
