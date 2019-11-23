@@ -119,18 +119,18 @@ class OrderProduct(models.Model):
         return self.quantity * self.product.price
 
     def get_discount_price(self):
+        print(self.quantity * self.product.discount_price)
         return self.quantity * self.product.discount_price
+
 
     def get_saved(self):
         return self.get_total_price() - self.get_discount_price()
 
     def final_price(self):
         if self.product.discount_price:
-            print()
             return self.get_discount_price()
         else:
             return self.get_total_price
-        print(final_p)
 
 
 class Order(models.Model):
@@ -143,6 +143,7 @@ class Order(models.Model):
     refund_granted = models.BooleanField(default=False)
     billing_address = models.ForeignKey(
         'BilllingAddress', on_delete=models.SET_NULL, blank=True, null=True)
+    received = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username

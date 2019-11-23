@@ -252,4 +252,3 @@ def get_random():
     pk = random.randint(1, max_id)
     return Products.objects.get(pk=pk)
 print(get_random)
-
